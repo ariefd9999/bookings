@@ -9,6 +9,7 @@ import (
 
 	"github.com/ariefd/bookings/pkg/config"
 	"github.com/ariefd/bookings/pkg/models"
+	"github.com/justinas/nosurf"
 )
 
 var functions = template.FuncMap{}
@@ -20,12 +21,12 @@ func NewTemplates(a *config.AppConfig) {
 	app = a
 }
 
-func AddDefaultData(td *models.TemplateData) *models.TemplateData {
-
+func AddDefaultData(td *models.TemplateData, r *http.Request) *models.TemplateData {
+	td.CSRFToken = nosurf.Token(r)
 	return td
 }
 
-func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData) {
+func RenderTemplate(w http.ResponseWriter, r *http.Request, tmpl string, td *models.TemplateData) {
 
 	var tc map[string]*template.Template
 
@@ -43,9 +44,9 @@ func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData)
 
 	buf := new(bytes.Buffer)
 
-	_ = t.Execute(buf, td)
+	td = AddDefaultData(td, r)
 
-	td = AddDefaultData(td)
+	_ = t.Execute(buf, td)
 
 	// render the template
 	_, err := buf.WriteTo(w)
