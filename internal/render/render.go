@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"path/filepath"
 
-	"github.com/ariefd/bookings/pkg/config"
-	"github.com/ariefd/bookings/pkg/models"
+	"github.com/ariefd/bookings/internal/config"
+	"github.com/ariefd/bookings/internal/models"
 	"github.com/justinas/nosurf"
 )
 

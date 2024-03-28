@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/ariefd/bookings/pkg/config"
-	"github.com/ariefd/bookings/pkg/handlers"
-	"github.com/ariefd/bookings/pkg/render"
+	"github.com/ariefd/bookings/internal/config"
+	"github.com/ariefd/bookings/internal/handlers"
+	"github.com/ariefd/bookings/internal/render"
 
 	"github.com/alexedwards/scs/v2"
 )
