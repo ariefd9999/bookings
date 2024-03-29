@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/gob"
 	"fmt"
 	"log"
 	"net/http"
@@ -8,6 +9,7 @@ import (
 
 	"github.com/ariefd/bookings/internal/config"
 	"github.com/ariefd/bookings/internal/handlers"
+	"github.com/ariefd/bookings/internal/models"
 	"github.com/ariefd/bookings/internal/render"
 
 	"github.com/alexedwards/scs/v2"
@@ -19,6 +21,8 @@ var app config.AppConfig
 var session *scs.SessionManager
 
 func main() {
+	// what am I going to put in the session
+	gob.Register(models.Reservation{})
 
 	app.InProduction = false
 
