@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"testing"
 
 	"github.com/ariefd/bookings/internal/config"
@@ -17,6 +16,6 @@ func TestRoutes(t *testing.T) {
 	case *chi.Mux:
 		// do nothing
 	default:
-		t.Error(fmt.Sprintf("type is not *chi.Mux, but is %T", v))
+		t.Errorf("type is not *chi.Mux, but is %T", v)
 	}
 }
